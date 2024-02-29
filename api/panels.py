@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from services.tables import get_data, update_data
+from .services.tables import get_data, update_data
 
 panels = Blueprint('panels', __name__)
 

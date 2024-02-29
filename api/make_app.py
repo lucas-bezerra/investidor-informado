@@ -7,11 +7,11 @@ def create_app():
             static_folder='static')
 
     # blueprint for non-auth parts of app
-    from main import main as main_blueprint
+    from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
     # blueprint for panels parts of app
-    from panels import panels as panels_blueprint
+    from .panels import panels as panels_blueprint
     app.register_blueprint(panels_blueprint)
 
     # Função para renderizar uma página de erro personalizada
