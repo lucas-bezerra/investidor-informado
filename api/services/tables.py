@@ -1,6 +1,9 @@
 import pandas as pd
 from io import StringIO
-import time, json
+import time, json, os
+
+os.environ["TZ"] = "America/Sao_Paulo"
+time.tzset()
 
 from redislite import Redis
 redis_connection = Redis('/tmp/redis.db')
