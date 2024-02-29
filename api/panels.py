@@ -8,7 +8,7 @@ panels = Blueprint('panels', __name__)
 def preco_justo():
     bg_list, list_date = get_data()
     return render_template('panels/preco_justo.html',
-                           tables=[bg_list.to_html(classes='table table-hover table-striped table-dark', index = False, border=0)],
+                           tables=[bg_list.to_html(classes='table table-hover table-striped table-dark table-responsive', index = False, border=0)],
                            titles=bg_list.columns.values,
                            list_date=list_date)
 
