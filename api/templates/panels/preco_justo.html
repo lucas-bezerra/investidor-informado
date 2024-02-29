@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>{% block title %} Método Greenblatt + Método Graham {% endblock %}</h1>
+      <div class="row p-3 my-auto">
+        <h5 class="mr-3 my-auto">
+          Dados de: {{ list_date }}
+          <div class="row px-3">
+            <small class="text-muted">Os dados são atualizados a cada 30 minutos.</small>
+          </div>
+        </h5>
+        {# <button type="button" class="btn btn-primary my-auto" onclick="updateCache(this);">Atualizar dados</button> #}
+      </div>
+      
+    </div>
+    <div class="col-sm-4">
+      <div class="text-xs-left">
+        <strong>Referências:</strong>
+        <ul>
+          <li><a target="_blank" href="https://github.com/vgsnts/JoelGreenblatt">Método Greenblatt (GitHub)</a></li>
+          <li><a target="_blank" href="https://github.com/vgsnts/BenjaminGraham/tree/main">Método Graham (GitHub)</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 p-3">
+
+      <div class="datatable-container">
+        <!-- ======= Header tools ======= -->
+        <div class="header-tools container">
+          <div class="row">
+            <div class="search col-4 p-3 my-auto">
+              <label id="search-label" for="searchInput">● Realiza busca em todas as colunas da tabela</label>
+              <div class="input-group mb-3">
+                <input class="form-control" id="searchInput" type="search" placeholder="Buscar..." aria-describedby="search-label">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% for table in tables %}
+          {{ table|safe }}
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
