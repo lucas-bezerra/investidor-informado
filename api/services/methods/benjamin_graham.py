@@ -15,16 +15,7 @@ def get_papel_threaded(tickers):
     return result
 
 def bg_main(tickers):
-    batch_size = 2 # Tamanho do lote
-    # Dividir os dados em lotes
-    batches = [tickers[i:i+batch_size] for i in range(0, len(tickers), batch_size)]
-
-    # Processar lotes em paralelo
-    with multiprocessing.get_context("spawn").Pool() as pool:
-      processed_batches = list(tqdm(pool.imap(get_papel_threaded, batches), total=len(batches), desc='COLETANDO DADOS DAS AÇÕES'))
-
-    # Juntar os lotes processados
-    ativos = pd.concat(processed_batches).reset_index()
+    ativos = get_papel_threaded(tickers)
 
     Selic = 11.75
     rows = ativos[['Papel', 'Empresa', 'Setor', 'Subsetor', 'Cotacao', 'LPA', 'ROE', 'Div_Yield']]

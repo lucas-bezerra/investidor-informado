@@ -21,11 +21,7 @@ def get_data_from_cache_or_update():
       return bg_list, list_date
     else:
       print('Cache not found')
-      bg_list = update_data()
-
-      now = time.localtime()
-      list_date = time.strftime("%d/%m/%Y - %H:%M", now)
-
+      bg_list, list_date = update_data()
       return bg_list, list_date
 
 def update_data(is_post=False):
@@ -33,7 +29,7 @@ def update_data(is_post=False):
     formated_date = time.strftime("%d/%m/%Y - %H:%M", now)
 
     ttl = redis_connection.ttl('tickers_list')
-    if (ttl > 600):
+    if (ttl > 1800):
        message = 'Sem alterações no momento'
        
        print(message)
@@ -48,7 +44,7 @@ def update_data(is_post=False):
     })
 
     redis_connection.set('tickers_list', data)
-    redis_connection.expire('tickers_list', 1800)
+    redis_connection.expire('tickers_list', 3600)
 
     if (is_post):
       message = 'Lista Atualizada'
