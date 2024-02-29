@@ -21,7 +21,7 @@ def bg_main(tickers):
 
     # Processar lotes em paralelo
     with multiprocessing.get_context("spawn").Pool() as pool:
-      processed_batches = list(tqdm(pool.map(get_papel_threaded, batches), total=len(batches), desc='COLETANDO DADOS DAS AÇÕES'))
+      processed_batches = list(tqdm(pool.imap(get_papel_threaded, batches), total=len(batches), desc='COLETANDO DADOS DAS AÇÕES'))
 
     # Juntar os lotes processados
     ativos = pd.concat(processed_batches).reset_index()
