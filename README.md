@@ -1,1 +1,1 @@
-# finance-study
+# Investidor Informado
