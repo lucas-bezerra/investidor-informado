@@ -1,8 +1,5 @@
 import pandas as pd
 import fundamentus
-from concurrent.futures import ProcessPoolExecutor
-from tqdm import tqdm
-import multiprocessing
 
 def filter_info():
 		# Exibindo o dataframe conforme o site Fundamentus
