@@ -32,7 +32,7 @@ def update_data(is_post=False):
     formated_date = time.strftime("%d/%m/%Y - %H:%M", now)
 
     ttl = redis_connection.ttl('tickers_list')
-    if (ttl > 1800):
+    if (ttl > 2400):
        message = 'Sem alterações no momento'
        
        print(message)
