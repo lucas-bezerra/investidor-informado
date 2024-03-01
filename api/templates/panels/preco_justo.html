@@ -1,53 +1,85 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-sm-8">
-      <h1>{% block title %} Método Greenblatt + Método Graham {% endblock %}</h1>
-      <div class="row p-3 my-auto">
-        <h5 class="mr-3 my-auto">
-          Dados de: {{ list_date }}
-          <div class="row px-3">
-            <small class="text-muted">Os dados são atualizados a cada 30 minutos.</small>
-          </div>
-        </h5>
-        {# <button type="button" class="btn btn-primary my-auto" onclick="updateCache(this);">Atualizar dados</button> #}
-      </div>
-      
-    </div>
-    <div class="col-sm-4">
-      <div class="text-xs-left">
-        <strong>Referências:</strong>
-        <ul>
-          <li><a target="_blank" href="https://github.com/vgsnts/JoelGreenblatt">Método Greenblatt (GitHub)</a></li>
-          <li><a target="_blank" href="https://github.com/vgsnts/BenjaminGraham/tree/main">Método Graham (GitHub)</a></li>
-        </ul>
-      </div>
-    </div>
+<div class="row">
+  <div class="col-sm-8">
+    <h1>Método Greenblatt + Método Graham</h1>
+    <h5>
+      Dados de: {{ list_date }}
+    </h5>
+    <h6 class="text-muted">Os dados são atualizados a cada 30 minutos.</h6>
+    {# <button type="button" class="btn btn-primary my-auto" onclick="updateCache(this);">Atualizar dados</button> #}
   </div>
 
-  <div class="row">
-    <div class="col-sm-12 p-3">
+  <div class="col-sm-4">
+    <div class="text-xs-left">
+      <strong>Referências:</strong>
+      <ul>
+        <li><a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" target="_blank"
+            href="https://github.com/vgsnts/JoelGreenblatt">Método Greenblatt (GitHub)</a></li>
+        <li><a class="link-underline link-underline-opacity-0 link-underline-opacity-75-hover" target="_blank"
+            href="https://github.com/vgsnts/BenjaminGraham/tree/main">Método Graham (GitHub)</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-      <div class="datatable-container">
-        <!-- ======= Header tools ======= -->
-        <div class="header-tools container">
-          <div class="row">
-            <div class="search col-4 p-3 my-auto">
-              <label id="search-label" for="searchInput">● Realiza busca em todas as colunas da tabela</label>
-              <div class="input-group mb-3">
-                <input class="form-control" id="searchInput" type="search" placeholder="Buscar..." aria-describedby="search-label">
-              </div>
+<div class="row">
+  <div class="col-sm-12 p-3">
+
+    <div class="datatable-container table-responsive">
+      <!-- ======= Header tools ======= -->
+      <div class="header-tools container">
+        <div class="row">
+          <div class="search p-3 my-auto">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="search-label"></span>
+              <input id="searchInput" type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="search-label">
             </div>
           </div>
         </div>
-
-        {% for table in tables %}
-          {{ table|safe }}
-        {% endfor %}
-
       </div>
 
+      {% for table in tables %}
+      {{ table|safe }}
+      {% endfor %}
+
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="avisoLegalModal" tabindex="-1" role="dialog"
+  aria-labelledby="avisoLegalModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="avisoLegalModalLabel">Aviso Legal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Seu texto de Aviso Legal aqui -->
+        <p>O Investidor Informado é uma ferramenta projetada para fornecer informações e análises relacionadas ao
+          mercado financeiro brasileiro. No entanto, é crucial destacar que os resultados apresentados por este projeto
+          <strong>NÃO DEVEM SER CONSIDERADOS RECOMENDAÇÕES DE INVESTIMENTO</strong>.
+        </p>
+
+        <ul>
+          <li>Os dados e análises fornecidos pelo Investidor Informado são baseados em algoritmos e métodos específicos,
+            mas não substituem a orientação de profissionais financeiros qualificados.</li>
+          <li>Tomar decisões de investimento envolve riscos, e os resultados do Investidor Informado devem ser
+            interpretados como informações suplementares, não como conselhos personalizados.</li>
+        </ul>
+
+        <p>O desenvolvedor e os colaboradores deste projeto não assumem responsabilidade por quaisquer perdas ou danos
+          decorrentes do uso das informações fornecidas pelo Investidor Informado.</p>
+        <p>Lembre-se sempre de realizar sua própria pesquisa e buscar orientação profissional antes de tomar decisões
+          financeiras significativas.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
+      </div>
     </div>
   </div>
+</div>
 {% endblock %}

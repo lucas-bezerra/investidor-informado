@@ -45,31 +45,6 @@ def create_table(df):
 
 		return dataframe
 
-def get_sectors(tickers):
-		result = {}
-		for ticker in tickers:
-			result[ticker] = 'N.A'
-
-		df = pd.DataFrame.from_dict(result, orient='index').reset_index()
-		df.columns = ['Papel', 'Setor']
-		return df
-
-def get_sector_data(dataframe):
-		dataframe.index += '.SA'
-
-		batch_size = 2 # Tamanho do lote
-		# Dividir os dados em lotes
-		batches = [dataframe.index[i:i+batch_size] for i in range(0, len(dataframe.index), batch_size)]
-
-		# Processar lotes em paralelo
-		mp_context=multiprocessing.get_context("fork")
-		with ProcessPoolExecutor(mp_context=mp_context) as executor:
-			processed_batches = list(tqdm(executor.map(get_sectors, batches), total=len(batches), desc='COLETANDO SETORES'))
-
-		# Juntar os lotes processados
-		result = pd.concat(processed_batches).reset_index()
-		return result
-
 def jg_main():
     filtro = filter_info()
     ranking = rank_info(filtro)

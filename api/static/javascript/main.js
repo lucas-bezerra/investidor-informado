@@ -19,3 +19,22 @@ const convertToMilliseconds = (value, type) => {
       throw new Error('Tipo inválido. Use "seconds", "minutes" ou "hours".');
   }
 }
+
+const toggleTheme = () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
+    document.querySelector('#darkModeToggle').checked = (savedTheme === 'dark');
+  }
+
+  document.getElementById('darkModeToggle').addEventListener('click', function () {
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+
+    document.documentElement.setAttribute('data-bs-theme', newTheme);
+
+    localStorage.setItem('theme', newTheme);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', toggleTheme);
