@@ -1,10 +1,11 @@
 from flask import Flask, render_template
 from flask_cors import CORS
 
+
 def create_app():
     app = Flask(__name__,
-            static_url_path='', 
-            static_folder='static')
+                static_url_path='',
+                static_folder='static')
 
     # blueprint for non-auth parts of app
     from .main import main as main_blueprint

@@ -1,9 +1,13 @@
 from api.make_app import create_app
-from api.services.tables import update_data
+from api.methods.benjamin_graham import bg_main
+from api.methods.fii import get_fiis
 from apscheduler.schedulers.background import BackgroundScheduler
 
 app = create_app()
 
 scheduler = BackgroundScheduler()
-job = scheduler.add_job(func=update_data, trigger='interval', seconds=1800, name="Atualizando Dados das Tabelas")
+bg_job = scheduler.add_job(func=bg_main, args=[True], trigger='interval',
+                           seconds=1800, name="Atualizando Tabela Preço Justo")
+fii_job = scheduler.add_job(func=get_fiis, args=[True], trigger='interval',
+                            seconds=1800, name="Atualizando Tabela FIIs")
 scheduler.start()

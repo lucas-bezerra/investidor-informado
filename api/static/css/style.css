@@ -54,29 +54,16 @@
   margin: 0 auto;
 }
 
-.header-tools #search-label::after {
-  content: "\e8b6";
-  font-family: Material Icons;
-}
-
 .table thead th {
   font-weight: bolder;
   text-align: left;
   border-bottom: solid 1px var(--dt-border-color);
 }
 
-.table.table-hover tbody tr:hover > * {
-  --bs-table-bg-state: var(--bs-green);
+.dataTable tbody tr:hover {
+  background-color: rgb(var(--dt-row-selected)) !important;
 }
 
-.table tbody tr td:nth-child(n+5) {
-  --bs-table-bg-type: var(--bs-primary);
-  color: var(--dt-text-color);
-  font-weight: bold;
-}
-
-.table tbody tr:hover td {
-  background: none;
-  color: white;
-  font-weight: normal;
+.dataTable tbody tr:hover > td {
+  color: white !important;
 }
