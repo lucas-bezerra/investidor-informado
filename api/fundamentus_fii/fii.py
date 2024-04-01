@@ -33,7 +33,7 @@ def get_detalhes_fii(fii):
     logging.debug('1: get raw [{}]'.format(fii))
     tables = get_detalhes_fii_raw(fii)
 
-    print(tables)
+    print('\nGetting FII: ' + fii)
     if len(tables) == 6:
         pass
     else:  # pragma: no cover

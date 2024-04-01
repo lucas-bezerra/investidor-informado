@@ -51,6 +51,7 @@ def get_resultado_raw_fii():
 
     # Fix: percent string
     df['Dividend Yield'] = utils.perc_to_float(df['Dividend Yield'])
+    df['Vacância Média'] = utils.perc_to_float(df['Vacância Média'])
 
     # index by 'Papel', instead of 'int'
     df.index = df['Papel']
