@@ -7,7 +7,7 @@ app = create_app()
 
 scheduler = BackgroundScheduler()
 bg_job = scheduler.add_job(func=bg_main, args=[True], trigger='interval',
-                           seconds=1800, name="Atualizando Tabela Preço Justo")
+                           seconds=10800, name="Atualizando Tabela Preço Justo")
 fii_job = scheduler.add_job(func=get_fiis, args=[True], trigger='interval',
-                            seconds=1800, name="Atualizando Tabela FIIs")
+                            seconds=10800, name="Atualizando Tabela FIIs")
 scheduler.start()
