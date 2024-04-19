@@ -12,11 +12,11 @@ def filter_info():
     df = resultado_fii.get_resultado_fii()
 
     # Filtrando conforme aplicado pela formula
-    # P/VP <= 1.10
+    # 0.90 <= P/VP <= 1.05
     # Div. Yield >= 6%
     # Liq. 2 meses >= R$2.000.000
     # Vacância Média < 10%
-    filtro = df[(df['pvp'] <= 1.1) & (df['liq'] >= 2000000) & (df['dy'] >= 0.06) & (df['vacm'] < 0.1)]
+    filtro = df[(0.9 <= df['pvp'] <= 1.05) & (df['liq'] >= 2000000) & (df['dy'] >= 0.06) & (df['vacm'] < 0.1)]
 
     return filtro
 
@@ -126,4 +126,4 @@ def get_fiis(update=False):
     return df, formated_date
 
 
-get_fiis(True)
+# get_fiis(True)
