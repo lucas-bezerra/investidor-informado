@@ -1,4 +1,6 @@
-from ..fundamentus_fii import fii, resultado_fii, utils
+import os,sys 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from fundamentus_fii import fii, resultado_fii, utils
 import pandas as pd
 import json
 import time
@@ -12,11 +14,11 @@ def filter_info():
     df = resultado_fii.get_resultado_fii()
 
     # Filtrando conforme aplicado pela formula
-    # 0.90 <= P/VP <= 1.05
+    # 0.90 <= P/VP <= 1.06
     # Div. Yield >= 6%
     # Liq. 2 meses >= R$2.000.000
     # Vacância Média < 10%
-    filtro = df[(0.9 <= df['pvp'] <= 1.05) & (df['liq'] >= 2000000) & (df['dy'] >= 0.06) & (df['vacm'] < 0.1)]
+    filtro = df[(df['pvp'] >= 0.9) & (df['pvp'] <= 1.06) & (df['liq'] >= 2000000) & (df['dy'] >= 0.06) & (df['vacm'] < 0.1)]
 
     return filtro
 
