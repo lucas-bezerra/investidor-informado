@@ -1,6 +1,4 @@
-import os,sys 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from fundamentus_fii import fii, resultado_fii, utils
+from ..fundamentus_fii import fii, resultado_fii, utils
 import pandas as pd
 import json
 import time
